@@ -1,1 +1,56 @@
-asdasd
+1. Node.js란?
+  1) ~ 1995년 이전 : HTML + CSS --> 웹사이트 개발  
+     ~ 1995년 이후 : HTML + CSS + JavaScript --> 웹 사이트 개발
+  2) JavaScript
+      - Netscape사에서 개발한 live script > Mocha > JavaScript 12월 발표
+  3) 브라우저에서 지원하는 자바스크립트 엔진
+      - 사파리(Safari) : JavaScript core
+      - InternetExplorer(MS) : Chakara 
+      - Firefox : Spider Monkey
+      - Chrome : V8 엔진(JIT Just-in-Time comilation)
+      - Edage(MS) : Chakara --> 2021년도에 V8 엔진을 탑재함
+  4) 2009년 Ryan Dahl(라이언 달)이 Node.js를 발표
+      Deno : TypeScript 런타임 최초 개발자
+      -- JavaScript everyWhere -- 
+  5) Node.js는 
+      '크롬의 V8엔진을 탑재하고 있는 자바스크립트 런타임 환경이다', node.js 자체가 서버는 아님, 브라우저 없이 자바스크립트 코드를 실행할 수 있게하는 역할을 함
+  6) Browser vs Node.js
+      Browser => 동적인 웹 애플리케이션 구현 가능
+                 --------------------------
+                 Web API - windows, Document, Ajax, JSON...
+
+      Node.js => 서버와 서버간의 렌더링, 백엔드 서버 구현, 
+                 프론트 엔드 개발 등...
+                 IO 작업이 많을 때, 데이터가 작은 경우일 때 Node.js를 사용하는게 유리 ex)실시간 채팅 
+                 ------------------------------
+                 Node API를 사용하기 때문에 위처럼 구현 가능 
+
+ 2. Node.js를 어떻게 공부할 것인가?
+  1) Node의 구조를 정확히 이해하고 실행방식을 기억한다. 
+  2) Node에서 제공하는 API를 잘 사용할 줄 알아야 한다. 
+     API는 자바스크립트 문법으로 작성되었으므로, 문법을
+     정확히 익히도록 한다. 
+  3) 개발을 편리하게 지원해주는 프레임워크에 대해서 익힌다. 
+     Node.js --> Express, Rust
+     Web API(브라우저) --> React, Vue
+
+ 3. Node.js 특징 4가지
+  1) JavaScript Runtime
+    - V8 엔진 탑재 -> EcmaScript6, Open API, Node API...
+  2) Single Thread
+    - Process(Multi Thread) vs Thread
+  3) Non-Blocking(비동기적) IO
+  4) Event - Driven
+
+  4. 실행환경 만들기
+   1) Node.js 설치 
+   2) 터미널 툴 설치
+   3) 개발 툴 설치 : Vscode
+   4) Git 설치 및 Github 연동
+
+  5. REPL - 터미널 환경에서 실행
+    R : Read, E : Eval, P : Print, L : Loop
+
+  6. console 로그에 대한 API 검색 및 활용 - 2. console.js
+
+  7. this 정리(global,object) - 3. this.js
