@@ -40,8 +40,8 @@ router.put('/', (req, res, next) => {
 //5. DELETE : /dwitter/:id - My Dwitter delete
 router.delete('/', (req, res, next) => {
   const {pid} = req.body;
-  dwitterList = dwitterList.filter((dwitter) =>  dwitter.pid !== parseInt(pid));
-  // dwitterList = dwitterList.filter((dwitter) => {
+  dwitterList = dwitterList.filter((dwitter) =>  dwitter.pid !== parseInt(pid)); //if문 요약  
+  // dwitterList = dwitterList.filter((dwitter) => { 
   //   if(dwitter.pid !== parseInt(pid)){
   //     return dwitter
   //   }
