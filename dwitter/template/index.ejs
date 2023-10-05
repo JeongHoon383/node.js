@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dwitter</title>
+</head>
+<body>
+  <h1>dwitter</h1>
+  <ul>
+    <li><a href="#">All dwitter</a></li>
+    <li><a href="#">My dwitter</a></li>
+    <li><a href="#">Login</a></li>
+  </ul>
+  
+  <form name="contentForm" action="/dwitter" method="post" style="border: 2px solid gray;">
+    <input type="text" name="id" placeholder="id">
+    <input type="text" name="name" placeholder="id">
+    <input type="text" name="content" placeholder="content" style="width:70%;">
+    <button type="submit">Post</button>
+  </form>
+
+  <% dwitterList.forEach((dwitter) => { %>
+  <div id="result-box" style="border: 1px solid gray; margin-top: 10px;">
+    <%= dwitter.pid %>
+    <span style="float: right; cursor: pointer;" onclick="remove('<%= dwitter.pid %>')">삭제</span>
+    <span style="float: right; cursor: pointer;" onclick = "updateToggle('<%= dwitter.pid %>')">편집&nbsp;&nbsp;</span>
+    <img style="clear: both;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQspIoiU8ItPaqHrfoLIxha3iRBMjSrVl825w&usqp=CAU" alt="" width="100px">
+    <span>[<%= dwitter.name %>]</span>
+    <span><a href="/dwitter?id=<%= dwitter.id %>"><%= dwitter.id %></a></span>
+    <span><%= dwitter.date %></span>
+    <div>
+      <%= dwitter.content %>
+    </div>
+    <div id="updateForm_<%= dwitter.pid %>" style="display: none;">
+      <input type="text" id="content_<%= dwitter.pid %>" style="width: 80%">
+      <button type="button" id="btnUpdate" onclick="update('<%= dwitter.pid %>')">Update</button>
+    </div>
+
+  </div>
+<% }) %>
+
+    <script>
+      function updateToggle(pid){
+        const updateForm = document.querySelector("#updateForm_" + pid); // +pid 꼭 기억할 것
+        const contentText = document.querySelector('#content_' + pid)
+        const display = updateForm.style.display;
+        if(display === "none"){
+          updateForm.style.display = "block";
+          contentText.focus()
+        }else{
+          updateForm.style.display = "none";
+          contentText.value = "";
+        }
+      }
+
+      function update(pid){
+        const updateText = document.querySelector("#content_"+pid).value
+        fetch('/dwitter', 
+        { 
+          method : 'PUT', 
+          headers : {'content-type' : 'application/json'},
+          body : JSON.stringify({pid : pid, content : updateText})
+        }
+        )
+        .then((result) => {
+          if(result.status === 204){
+            alert("업데이트 성공!!");
+            window.location.reload();
+          }
+        })
+        .catch()
+        .finally();
+      }
+
+      function remove(pid){
+        fetch('/dwitter', 
+        { 
+          method : 'DELETE', 
+          headers : {'content-type' : 'application/json'},
+          body : JSON.stringify({pid : pid})
+        }
+        )
+        .then((result) => {
+          if(result.status === 204){
+            alert("삭제 성공!!");
+            window.location.reload();
+          }
+        })
+        .catch()
+        .finally();
+      }
+    </script>
+</body>
+</html>
