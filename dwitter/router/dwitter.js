@@ -9,8 +9,9 @@ router.use(express.urlencoded());
 
 // 1. GET : /dwitter - All Dwitter List
   router.get('/', (req, res, next) => {
+    const renderList = dwitterList;
     ejs
-    .renderFile('./template/index.ejs', {dwitterList})
+    .renderFile('./template/index.ejs', {renderList})
     .then((data) => { res.end(data); });
   })
 //2. POST : /dwitter - tweet create
@@ -25,6 +26,14 @@ router.post('/', (req, res, next) => {
 })
 //3. GET : /dwitter?id=자신의 아이디 - My Dwitter List
 //  GET : /dwitter/:id
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id // 넘어오는 id 받음
+  const lenderList = dwitterList.filter((dwitter) => dwitter.id === id)
+  ejs
+  .renderFile('./template/index.ejs', {renderList})
+  .then((data) => res.end(data)); //data --> index.ejs 파일에 renderList를 넣어서 만든 html 파일, 클라이언트에 전송해야됨, 클라이언트는 res로만 전송 가능
+});
+
 
 //4. PUT : /dwitter/:id - My Dwitter update
 router.put('/', (req, res, next) => {

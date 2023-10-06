@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News</title>
+</head>
+<body>
+  <h1>헤드라인 뉴스</h1>
+  <hr>
+  <div>
+    <button type="button" id="btnReg" onclick="toggleButton()">뉴스등록</button>
+    <!-- 뉴스 등록폼 : 토글 처리, 이미지URL, 제목, 내용 
+      form 생성 -> script 작성 -> news.js 작성 -> foreach 작성 반복
+    -->
+    <form name="regForm" action="/news/register" method="post" id="regForm" style="display: none;">
+      URL : <input type="text" name="url" style="width:70%;"><br> <!-- name -> json 객체의 프로퍼티 -->
+      Title : <input type="text" name="title" style="width:70%;"><br>
+      Content : <textarea type="text" name="content" style="width:70%;" placeholder="content"></textarea><br>
+      <button type="submit">등록완료</button>
+      <button type="reset">다시쓰기</button>
+    </form>
+
+    <ul>
+      <% newsList.forEach((news) => { %>
+      <li style="list-style: none;">
+        <img src="<%= news.url %>" alt="" width="200px" height="200px" style="float: left;">
+        <p><a href="/news/<%=news.nid%>"><%= news.title %></a></p>
+        <p><%= news.contents %></p>
+      </li>
+    <% }) %>
+    </ul>
+  </div>
+
+
+  <script>
+    function toggleButton(){
+      const regForm = document.querySelector('#regForm')
+      const display = regForm.style.display;
+      if(display === 'none'){
+        regForm.style.display = 'block';
+      }else{
+        regForm.style.display = 'none'
+      }
+    }
+  </script>
+</body>
+</html>

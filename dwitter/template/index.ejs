@@ -8,7 +8,7 @@
 <body>
   <h1>dwitter</h1>
   <ul>
-    <li><a href="#">All dwitter</a></li>
+    <li><a href="/dwitter">All dwitter</a></li>
     <li><a href="#">My dwitter</a></li>
     <li><a href="#">Login</a></li>
   </ul>
@@ -20,7 +20,7 @@
     <button type="submit">Post</button>
   </form>
 
-  <% dwitterList.forEach((dwitter) => { %>
+  <% renderList.forEach((dwitter) => { %>
   <div id="result-box" style="border: 1px solid gray; margin-top: 10px;">
     <%= dwitter.pid %>
     <span style="float: right; cursor: pointer;" onclick="remove('<%= dwitter.pid %>')">삭제</span>
@@ -36,7 +36,6 @@
       <input type="text" id="content_<%= dwitter.pid %>" style="width: 80%">
       <button type="button" id="btnUpdate" onclick="update('<%= dwitter.pid %>')">Update</button>
     </div>
-
   </div>
 <% }) %>
 

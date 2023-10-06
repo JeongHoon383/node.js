@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1><%= newsContent.title %></h1>
+  <div>
+    <img src="<%= newsContent.url %>">
+  </div>
+  <p><%= newsContent.content %></p>
+  <p style="text-align: right;">
+    <a href="/news"><button type="button">리스트</button></a>
+  </p> <!-- 눌렀을 때 list.ejs로 넘어가게 -->
+  <!-- <p>댓글</p>
+  <hr>
+  <div id="replyForm">
+    <textarea name="replyContent" id="replyContent" style="width: 90%"></textarea><br>
+    <button type="button" id="btnRegReply">등록완료</button>
+  </div> -->
+
+  <%- include('reply') %>
+
+
+  <script>
+    const btnRegReply = document.querySelector('#btnRegReply')
+    btnRegReply.addEventListener('click', (e) => {
+      const replyContent = document.querySelector('#replyContent').value;
+      fetch('/reply', 
+      {
+        method : "post",
+        headers : {'content-type' : 'application/json'},
+        body : JSON.stringify({nid:'<%= newsContent.nid %>', replyContent : replyContent})
+      })
+      .then((result) => {
+        alert(result.status)
+      })
+      .catch(console.error)
+    });
+  </script>
+</body>
+</html>
