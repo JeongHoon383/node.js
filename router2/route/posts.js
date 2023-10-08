@@ -3,7 +3,7 @@ import express from 'express';
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-  res.send('GET: /posts')
+  res.send('안녕안녕')
 })
 
 router.post('/', (req, res, next) => {
