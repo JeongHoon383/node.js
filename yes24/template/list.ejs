@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      } /*이중선 제거*/
+      td {
+        width: 100px;
+        height: 50px;
+        text-align: center;
+        border: 1px solid #000;
+      }
+      td:hover{
+        background-color: pink;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <table style="width: 1000px">
+      <tr>
+        <td onclick="bestSellerCategory('BestSeller', '1')">총합</td>
+        <td onclick="bestSellerCategory('RealTimeBestSeller', '1')">실시간</td>
+        <td onclick="bestSellerCategory('DayBestSeller', '1')">일별</td>
+        <td onclick="bestSellerCategory('MonthWeekBestSeller', '1')">일별/주별</td>
+        <td onclick="bestSellerCategory('HotPriceBestSeller', '1')">특가</td>
+        <td onclick="bestSellerCategory('SteadySeller', '1')">스테디셀러</td>
+      </tr>
+    </table>
+    <h2>국내도서 종합 베스트</h2>
+    <div id="list"></div>
+
+    <script>
+      bestSellerCategory('BestSeller', '1')
+      function bestSellerCategory(categoryName, page){
+        const url = '/'+categoryName+'/'+page;
+        fetch(url)
+        .then(response => response.json())
+        .then((bestSellerList) => {
+          //alert(JSON.stringify(bestSellerList))
+          const output = `${bestSellerList.map(book => {`
+            <h2 class="title">${book.title}</h2>
+          `})}`
+          document.querySelector('#list').innerHTML = output;
+        })
+        .catch()
+      }
+    </script>
+  </body>
+</html>

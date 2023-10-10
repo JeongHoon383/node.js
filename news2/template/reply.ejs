@@ -7,6 +7,53 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Reply Include 부분입니다!!!!!!</h1>
+  <p>댓글 <%= newsContent.nid %> </p>
+  <hr>
+  <div id="replyForm">
+    <textarea name="replyContent" id="replyContent" style="width: 90%"></textarea><br>
+    <button type="button" id="btnRegReply" onclick="regReply('<%= newsContent.nid %>')">등록완료</button>
+  </div>
+  <ul id="relpyList">
+    
+  </ul>
+  <script>
+    relpyList('<%= newsContent.nid %>');
+
+    function relpyList(nid){ //맨처음 호출되는 리스트 출력함수
+      //get 방식으로 nid 값을 넘긴 후 json 타입으로 리스트 가져오기
+      fetch('/reply' +nid)
+      .then(response => response.json())
+      .then((rlist) => {
+        const output = `
+          ${rlist.map(reply => 
+            `<li>${reply.replyContent}<li>
+          `).join('\n')}
+        `;
+        document.querySelector('#replyList').innerHTML = output;
+      })
+      .catch()
+      //동적 HTML으로 코드 출력  
+    }
+    /* 댓글등록 */
+
+    function regReply(nid){
+      const replyContent = document.querySelector('#replyContent').value;
+
+      fetch('/reply', { // fetch로 요청 /reply 라우터에서 처리합니다
+        method : 'post',
+        headers : {'content-type' : 'application/json'},
+        body : JSON.stringify({nid : nid, replyContent : replyContent})
+      }) //url 넘길 때 사용하는 문법
+      .then(response => {
+        if(respose.status === 201){
+          window.location.reload();
+        }
+      }) // 성공을 하게되면
+      .then((data) => {
+        alert(JSON.stringify(data));
+        window.location.reload(); //reply.js 재호출 --> replyList 함수 실행
+      })
+    } 
+  </script>
 </body>
 </html>
