@@ -1,5 +1,5 @@
 import express from 'express'
-import newsRouter from './router/new.js'
+import newsRouter from './router/news2.js'
 
 const app = express();
 

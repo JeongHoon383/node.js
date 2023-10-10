@@ -4,8 +4,8 @@ import ejs from 'ejs'
 const router = express.Router();
 const newsList = []; //{nid, url, title, content, rdate}
 
-router.use(express.json());
-router.use(express.urlencoded());
+router.use(express.json()); //express json 객체 사용시 사용 문법
+router.use(express.urlencoded()); // 없으면 url 인식 못함
 
 router.get('/:nid', (req, res, next) => {
   const nid = req.params.nid //req 받음, res 요청함

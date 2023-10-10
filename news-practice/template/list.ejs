@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>헤드라인 뉴스</h1>
+  <hr>
+  <div>
+    <button type="button" id="btnReg" onclick="toggleButton()">
+      뉴스등록
+    </button>
+    <form name="regForm" action="/news/register" method="post" id="regForm" style="display: none;">
+      URL : <input type="text" name="url" style="width: 70%;"><br>
+      Title : <input type="text" name="title" style="width: 70%;"><br>
+      Content : <textarea type="text" name="content" style="width:70%;" placeholder="content"></textarea><br>
+      <button type="submit">등록완료</button>
+      <button type="reset">다시쓰기</button>
+    </form>
+
+  </div>
+
+
+
+
+
+
+
+  <script>
+    function toggleButton(){
+      const regForm = document.querySelector('#regForm')
+      const display = regForm.style.display;
+      if(display === 'none'){
+        regForm.style.display = 'block'
+      }else{
+        regForm.style.display = 'none'
+      }
+    }
+  </script>
+</body>
+</html>
