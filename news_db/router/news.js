@@ -56,7 +56,6 @@ router.get('/', (req, res, next) => {
       .then((data) => res.end(data));
     }
   });
-  
 });
 
 

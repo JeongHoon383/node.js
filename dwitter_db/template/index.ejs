@@ -33,12 +33,12 @@
       <%= list[i].content %>
     </div>
     <div id="updateForm_<%= list[i].id %>" style="display:none;">
-       <input type="text" id="content_<%= list[i].id %>" style="width:80%;background:lightcyan;">
-       <button type="button" onclick="update('<%= list[i].id %>')">Update</button>  
+      <input type="text" id="content_<%= list[i].id %>" style="width:80%;background:lightcyan;">
+      <button type="button" onclick="update('<%= list[i].id %>')">Update</button>  
     </div>
   </div>
   <% } %>
- 
+
   
   <script>
     /**

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>헤드라인 뉴스</h1>
+  <hr>
+  <div style="text-align: right;">
+    <button type="button" id="btnReg" onclick="regToggle()">뉴스등록</button>
+  </div>
+
+  <form name="regForm" action="/news/register" method="post" id="regForm" style="display: none;">
+    URL : <input type="text" name="url" style="width: 70%;"><br>
+    Title : <input type="text" name="title" style="width: 70%;"><br>
+    Content : <textarea name="content" style="width: 70%;"></textarea>
+    <button type="submit">등록완료</button>
+    <button type="reset">다시쓰기</button>
+  </form>
+
+  <ul>
+    <% for(let i = 0; i<newsl)
+  </ul>
+</body>
+</html>

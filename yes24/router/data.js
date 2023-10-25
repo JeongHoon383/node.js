@@ -56,7 +56,7 @@ const dayBestSellerList = {
     dc : 10
   }]};
 
-  const mothWeekBestSellerList = {
+  const monthWeekBestSellerList = {
     title : "국내도서 월별 베스트",
     list : [
     { bid : 104,
@@ -119,7 +119,7 @@ const dayBestSellerList = {
 export {bestSellerList, 
         realTimeBestSellerList,
         dayBestSellerList,
-        mothWeekBestSellerList,
+        monthWeekBestSellerList,
         hotPriceBestSellerList,
         steadySellerList
       };

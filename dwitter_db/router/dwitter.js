@@ -16,12 +16,12 @@ router.get('/', (req, res, next) => {
   conn.query(sql, (err,rows,fields) => {
     if(err){
       console.log(err);
-    }else{     
+    }else{
       ejs
       .renderFile('./template/index.ejs', {list:rows})
-      .then((data) => { 
+      .then((data) => {
         console.log(data);
-        res.end(data); });
+        res.end(data);});
     }
   }); 
 });  
@@ -35,7 +35,6 @@ router.post('/', (req, res, next) => {
     if(err) console.log('query is not execute!!!');
     else res.redirect('/dwitter');
   });
-   
 });
 
 // 3. GET: /dwitter/:id - My Dwitter List
@@ -50,7 +49,6 @@ router.get('/:id', (req, res, next) => {
       .then((data) => res.end(data));
     }
   });
-
 });
 
 
@@ -75,7 +73,7 @@ router.delete('/', (req, res, next) => {
       if(err) console.log(err)
       else res.status(204).send('delete success!'); 
   });
- });
+});
 
 
 export default router;

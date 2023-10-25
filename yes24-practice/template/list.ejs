@@ -47,7 +47,21 @@
       const url = "/"+categoryName+"/"+page;
       fetch(url)
       .then(response => response.json())
-      
+      .then((bestSellerList) => {
+        const output = `
+          <h2 class="title">${bestSellerList.title}</h2>
+          <hr>
+          ${bestSellerList.list.map(book =>`
+            <div style='border-bottom:1px solid lightgray; padding:5px 0;'>
+              <h2>[도서]${book.bname}</h2>
+              <p><span>${book.author} 저</span><span> ${book.translator} 역 |
+                </span><span>${book.publisher} | </span><span>${book.pdate}</span></p>
+              <p><h3>${book.price}</h3><span>(${book.dc}% 할인)</span></p>
+            </div>
+            `).join('\n')}`; 
+        document.querySelector('#list').innerHTML = output;
+      }) //then
+      .catch()
     }
   </script>
 </body>
