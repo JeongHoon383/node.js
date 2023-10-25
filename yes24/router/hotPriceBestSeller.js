@@ -1,10 +1,10 @@
-import express from 'express'
-import * as list from './data.js'
+import express from 'express';
+import * as list from './data.js';
 
-const router = express.Router()
+const router = express.Router();
 
 router.get('/:page', (req, res, next) => {
-  res.json([{title:hotPriceBestSeller.title}])
-})
+  res.json(list.hotPriceBestSellerList);
+});
 
-export default router
+export default router;

@@ -1,54 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-      table {
-        border-collapse: collapse;
-      } /*이중선 제거*/
-      td {
-        width: 100px;
-        height: 50px;
-        text-align: center;
-        border: 1px solid #000;
-      }
-      td:hover{
-        background-color: pink;
-        cursor: pointer;
-      }
+        div, ul {
+            margin:0; padding:0;
+        }
+        div.ySchTab ul li.on {
+            width:150px;
+            list-style-type : none;
+            border:1px solid #333;
+            float:left;
+            text-align:center;
+            padding : 15px 0; 
+        }
+        h2.title { clear: both; padding:30px 0;}
+        li.on:hover {
+            background-color: lightgray;
+            font-weight: bold;
+            cursor : pointer;
+        }
     </style>
-  </head>
-  <body>
-    <table style="width: 1000px">
-      <tr>
-        <td onclick="bestSellerCategory('BestSeller', '1')">총합</td>
-        <td onclick="bestSellerCategory('RealTimeBestSeller', '1')">실시간</td>
-        <td onclick="bestSellerCategory('DayBestSeller', '1')">일별</td>
-        <td onclick="bestSellerCategory('MonthWeekBestSeller', '1')">일별/주별</td>
-        <td onclick="bestSellerCategory('HotPriceBestSeller', '1')">특가</td>
-        <td onclick="bestSellerCategory('SteadySeller', '1')">스테디셀러</td>
-      </tr>
-    </table>
-    <h2>국내도서 종합 베스트</h2>
+</head>
+<body>
+    <div class="ySchTab">
+        <div class="yesTab_nor yesTab_black b_size">
+            <ul>
+                <li class="on" onclick="bestSellerCategory('BestSeller','1')"><span class="txt">종합</span></li>
+                <li class="on"  onclick="bestSellerCategory('RealTimeBestSeller','1')"><span class="txt">실시간<em class="ico_newSup"></em></span></li>
+                <li class="on" onclick="bestSellerCategory('DayBestSeller','1')"><span class="txt">일별</span></li>
+                <li class="on"  onclick="bestSellerCategory('MonthWeekBestSeller','1')"><span class="txt">월별/주별</span></li>
+                <li class="on"  onclick="bestSellerCategory('HotPriceBestSeller','1')"><span class="txt">특가</span></li>
+                <li class="on"  onclick="bestSellerCategory('SteadySeller','1')"><span class="txt">스테디셀러</span></li>
+            </ul>
+        </div>
+    </div>
     <div id="list"></div>
 
+    
+
     <script>
-      bestSellerCategory('BestSeller', '1')
-      function bestSellerCategory(categoryName, page){
-        const url = '/'+categoryName+'/'+page;
+    bestSellerCategory('BestSeller','1');
+    function bestSellerCategory(categoryName, page){
+        const url = "/"+categoryName+"/"+page;
         fetch(url)
         .then(response => response.json())
         .then((bestSellerList) => {
-          //alert(JSON.stringify(bestSellerList))
-          const output = `${bestSellerList.map(book => {`
-            <h2 class="title">${book.title}</h2>
-          `})}`
-          document.querySelector('#list').innerHTML = output;
-        })
+            //alert(JSON.stringify(bestSellerList));
+            const output = `
+            <h2 class="title">${bestSellerList.title}</h2>
+            <hr>
+            ${bestSellerList.list.map(book => `                             
+                <div style='border-bottom:1px solid lightgray; padding:5px 0;'>
+                    <h2>[도서]${book.bname}</h2>
+                    <p><span>${book.author} 저</span><span> ${book.translator} 역 | 
+                        </span><span>${book.publisher} | </span><span>${book.pdate}</span></p>
+                    <p><h3>${book.price}</h3><span>(${book.dc}% 할인)</span></p>
+                </div>
+            `).join('\n')}`;
+            document.querySelector("#list").innerHTML = output;
+        })  //then
         .catch()
-      }
-    </script>
-  </body>
+    }
+    
+</script>
+
+</body>
 </html>

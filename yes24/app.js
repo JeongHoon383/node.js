@@ -1,21 +1,20 @@
-import express from 'express'
-import bestSellerRouter from './router/bestSeller.js'
-import dayBestSellerRouter from './router/dayBestSeller.js'
-import hotPriceBestSellerRouter from './router/hotPriceBestSeller.js'
-import monthWeekBestSellerRouter from './router/monthWeekBestSeller.js'
-import realTimeBestSellerRouter from './router/realTimeBestSeller.js'
-import steadySellerRouter from './router/steadySeller.js'
+import express from 'express';
+import bestSellerRouter from './router/bestSeller.js';
+import realTimeBestSellerRouter from './router/realTimeBestSeller.js';
+import dayBestSellerRouter from './router/dayBestSeller.js';
+import monthWeekBestSellerRouter from './router/monthWeekBestSeller.js';
+import hotPriceBestSellerRouter from './router/hotPriceBestSeller.js';
+import steadySellerRouter from './router/steadySeller.js';
 
 const app = express();
 
-app.use('/BestSeller', bestSellerRouter); //BestSeller --> 주소창에 / 뒤에 오는것 
-app.use('/dayBestSeller', dayBestSellerRouter); 
-app.use('/hotPriceBestSeller', hotPriceBestSellerRouter); 
-app.use('/monthWeekBestSeller', monthWeekBestSellerRouter); 
-app.use('/realTimeBestSeller', realTimeBestSellerRouter);  
-app.use('/steadySeller', steadySellerRouter);  
+app.use('/BestSeller', bestSellerRouter);
+app.use('/RealTimeBestSeller', realTimeBestSellerRouter);
+app.use('/DayBestSeller', dayBestSellerRouter);
+app.use('/MonthWeekBestSeller', monthWeekBestSellerRouter);
+app.use('/HotPriceBestSeller', hotPriceBestSellerRouter);
+app.use('/SteadySeller', steadySellerRouter);
 
 
+app.listen(8080);
 
-
-app.listen(7070);
