@@ -29,3 +29,4 @@ export async function remove(id){
   .execute('delete from dwitter where id=?', [id])
   .then((result) => 'success');
 }
+

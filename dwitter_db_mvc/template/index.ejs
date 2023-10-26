@@ -10,11 +10,30 @@
   <ul>
     <li><a href="/dwitter">All Dwitter</a></li>
     <li><a href="#">My Dwitter</a></li>
-    <li><a href="#">Login</a></li>
+    <li><a href="#" onclick="loginToggle()">Login</a>
+      <a href="#" onclick="signUpToggle()">/ Signup</a>
+    </li>
   </ul>
+  <form action="/login" name="loginForm" method="post" style="display: none;">
+    <h4>Login Form</h4>
+    <input type="text" name="id" id="id" placeholder="id" style="width: 50%; background: rgb(205, 249, 218);">
+    <input type="password" name="pass" id="pass" placeholder="password" style="width: 50%; background: rgb(205, 249, 218);">
+    <button type="submit">Login</button>
+    <button type="reset">Reset</button><br><br>
+  </form>
 
-  <form name="contentForm" action="/dwitter" method="post" 
-                    style="border:2px solid gray">
+  <form action="/signUp" name="signUpForm" method="post" style="display: none;">
+    <h4>Signup Form</h4>
+    <input type="text" name="id" id="sid" placeholder="id" style="width: 50%; background: rgb(205, 249, 218);">
+    <input type="password" name="pass" id="spass" placeholder="password" style="width: 50%; background: rgb(205, 249, 218);">
+    <input type="text" name="name" id="sname" placeholder="name" style="width: 50%; background: rgb(205, 249, 218);">
+    <input type="text" name="content" id="scontent" placeholder="content" style="width: 50%; background: rgb(205, 249, 218);">
+    <button type="submit">signup</button>
+    <button type="reset">Reset</button><br><br>
+  </form>
+
+
+  <form name="contentForm" action="/dwitter" method="post" style="border:2px solid gray">
     <input type="text" name="id" placeholder="id">                    
     <input type="text" name="name" placeholder="name">                    
     <input type="text" name="content"  placeholder="content" style="width:70%;">
@@ -33,14 +52,33 @@
       <%= list[i].content %>
     </div>
     <div id="updateForm_<%= list[i].id %>" style="display:none;">
-       <input type="text" id="content_<%= list[i].id %>" style="width:80%;background:lightcyan;">
-       <button type="button" onclick="update('<%= list[i].id %>')">Update</button>  
+      <input type="text" id="content_<%= list[i].id %>" style="width:80%;background:lightcyan;">
+      <button type="button" onclick="update('<%= list[i].id %>')">Update</button>  
     </div>
   </div>
   <% } %>
- 
+
   
   <script>
+      /**
+     * loginForm Toggle
+     * */
+      function loginToggle(pid){
+      const display = loginForm.style.display;
+      const id = document.querySelector('#id')
+      const pass = document.querySelector('#pass')
+
+      if(display === "none"){
+        loginForm.style.display = "block";
+        id.focus();
+      }else{
+        loginForm.style.display = "none";
+        id.value = "";
+        pass.value = "";
+      }
+    }
+
+
     /**
      * Remove
      * */
@@ -100,6 +138,29 @@
         contentText.value = "";
       }
     }
+
+          /**
+     * signUpForm Toggle
+     * */
+      function signUpToggle(){
+      const display = signUpForm.style.display;
+      const sid = document.querySelector('#sid')
+      const spass = document.querySelector('#spass')
+      const name = document.querySelector('#name')
+      const content = document.querySelector('#content')
+
+      if(display === "none"){
+        signUpForm.style.display = "block";
+        id.focus();
+      }else{
+        signUpForm.style.display = "none";
+        sid.value = "";
+        spass.value = "";
+        name.vlue = "";
+        content = "";
+      }
+    }
+
   </script>
 </body>
 </html>
