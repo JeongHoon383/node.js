@@ -1,0 +1,15 @@
+로그인 인증 절차
+
+
+Client ---------<<로그인>>-----------> Server[id, pass] ---------<<id>>-----------> DB(MySQL)
+                                    bcrypt.compare() <---------<<pass>>----------- DB(MySQL)
+                                    ---<<result:true>>--
+쿠키저장   <--------------------------res[[JWT(쿠키) 생성 + 쿠키탑승]]
+                                    JWT : Header/Payload/Signature
+                                    npm i jsonwebtoken, npm i cookie-parser
+새로운 요청 + 쿠키(JWT) -----------------> req.cookie(JWT) 가져옴
+
+해야할 일 
+JWT 생성 및 쿠키 탑승, res객체를 이용해서 jwt 생성한 내용을 보내주면 브라우저, 클라이언트에 저장이 됨.
+다음번 요청할때 쿠키가 저장됨
+

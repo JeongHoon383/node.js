@@ -8,6 +8,7 @@ import steadySellerRouter from './router/steadySeller.js';
 
 const app = express();
 
+app.use('/', 로그인폼)
 app.use('/BestSeller', bestSellerRouter);
 app.use('/RealTimeBestSeller', realTimeBestSellerRouter);
 app.use('/DayBestSeller', dayBestSellerRouter);
