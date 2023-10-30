@@ -1,16 +1,13 @@
 import express from 'express';
-import ejs from 'ejs';
-import * as list from './data.js';
+import * as controller from '../controller/bestSellerController.js'
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-  ejs
-  .renderFile('./template/list.ejs', {})
-  .then((data) => res.end(data));
+router.get('/', (req, res) => {
+
 });
 
-router.get('/:page', (req, res, next) => {
+router.get('/:page', (req, res) => {
   res.json(list.bestSellerList);
 });
 

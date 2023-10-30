@@ -1,10 +1,8 @@
 import express from 'express';
-import * as list from './data.js';
+import * as controller from '../controller/steadySellerController.js'
 
 const router = express.Router();
 
-router.get('/:page', (req, res, next) => {
-  res.json(list.steadySellerList);
-});
+router.get('/:page', controller.getListPage)
 
 export default router;
