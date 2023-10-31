@@ -3,9 +3,7 @@ import * as controller from '../controller/bestSellerController.js'
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-
-});
+router.get('/', controller.getList)
 
 router.get('/:page', (req, res) => {
   res.json(list.bestSellerList);
